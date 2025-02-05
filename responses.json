@@ -1,0 +1,53 @@
+{
+  "greetings": {
+    "hi": "Hello! I am your personalized Bank helper chatbot.",
+    "hello": "Hello! I am your personalized Bank helper chatbot.",
+    "hey": "Hello! I am your personalized Bank helper chatbot."
+  },
+  "introduction": {
+    "what_do_you_do": "I am here to help you with your bank-related questions, including checking account balances, explaining banking services, assisting with transactions, and much more.",
+    "what_is_your_role": "I am your bank assistant, here to assist with banking services, account inquiries, transactions, and other banking-related information."
+  },
+  "duty": {
+    "what_is_your_duty": "I am here to assist with anything related to banking services, such as helping you understand our products, answering your account-related questions, assisting with transactions, and more.",
+    "what_are_you_here_for": "I am here to help you with your banking needs, including providing information on accounts, loans, transactions, and our services."
+  },
+  "faq": {
+    "how_can_i_open_an_account": "You can open a bank account by visiting our branch, or you can complete the process online through our website. Would you like me to guide you through it?",
+    "minimum_balance": {
+      "savings": "The minimum balance requirement for a savings account is ₹500. Would you like to know more about the benefits of a savings account?",
+      "current": "The minimum balance requirement for a current account is ₹10,000. Let me know if you need details on current account features.",
+      "fixed_deposit": "For a fixed deposit account, there is no minimum balance, but you can open a fixed deposit with a minimum investment of ₹1,000. Would you like assistance with fixed deposit options?",
+      "recurring_deposit": "The minimum balance requirement for a recurring deposit account varies, but generally, it starts at ₹500 per month. Would you like more details?"
+    },
+    "account_types": {
+      "savings_account": "A savings account allows you to deposit money and earn interest on it. It is best for everyday transactions and saving money.",
+      "current_account": "A current account is designed for businesses and professionals who need to make frequent transactions. It does not earn interest, but it provides high liquidity.",
+      "fixed_deposit": "A fixed deposit allows you to invest money for a fixed period at an agreed interest rate. It offers a safe and guaranteed return on your investment.",
+      "recurring_deposit": "A recurring deposit is an investment scheme where you deposit a fixed amount every month for a set period. The interest is compounded quarterly."
+    },
+    "loan_information": {
+      "how_can_i_apply_for_a_loan": "To apply for a loan, you can visit our branch or apply online through our website. Would you like guidance on the loan application process?",
+      "what_types_of_loans_do_you_offer": "We offer various types of loans, including personal loans, home loans, car loans, education loans, and business loans. Let me know if you'd like more information on a specific loan type.",
+      "what_is_the_interest_rate_for_personal_loan": "The interest rate for personal loans typically ranges between 10% and 20% depending on your eligibility. Would you like to know more about our personal loan options?",
+      "how_can_i_check_my_loan_status": "You can check the status of your loan by visiting our website or calling our customer service. Alternatively, you can visit our branch for assistance."
+    },
+
+    "how_can_i_transfer_money": "You can transfer money using our mobile banking app, online banking, or by visiting a branch. Would you like assistance with the process?",
+    "what_is_neft": "NEFT (National Electronic Funds Transfer) is a payment system that allows you to transfer funds between banks electronically. It is available 24/7.",
+    "what_is_rtgs": "RTGS (Real-Time Gross Settlement) is used for high-value transactions. The transfer happens in real-time, and there is no upper limit for the amount.",
+    "what_is_imps": "IMPS (Immediate Payment Service) allows you to transfer funds instantly, 24/7, and is ideal for small to medium-sized transactions.",
+    "how_can_i_apply_for_a_credit_card": "You can apply for a credit card through our website or by visiting any branch. We offer various credit card options based on your requirements.",
+    "what_are_the_benefits_of_owning_a_credit_card": "A credit card helps you make purchases on credit, build your credit score, and earn rewards. You can also access benefits like discounts and cashbacks.",
+    "how_is_the_credit_card_limit_determined": "The credit card limit is determined based on your income, credit score, and the type of card you apply for. You can also request a limit increase after using the card responsibly.",
+    "how_can_i_get_an_atm_card": "You can apply for an ATM card by visiting our branch or online through our website. Would you like more details on how to get started?",
+    "what_is_the_difference_between_atm_and_debit_card": "An ATM card is primarily used for withdrawing cash from ATMs, while a debit card allows you to make purchases and withdraw cash at ATMs.",
+    "how_can_i_activate_online_banking": "To activate online banking, you can visit our website and follow the steps, or you can visit your nearest branch for assistance.",
+    "what_is_mobile_banking": "Mobile banking allows you to manage your bank account from your smartphone. You can check your balance, transfer funds, and perform various banking activities on the go.",
+    "what_are_the_bank's_working_hours": "Our bank is open from Monday to Friday, from 9:00 AM to 5:00 PM. On Saturdays, we are open from 9:00 AM to 1:00 PM.",
+    "how_can_i_contact_customer_service": "You can contact our customer service by calling 1800-123-456 or by visiting our website for support."
+  },
+  "fallback": {
+    "unknown_question": "I can help with questions related to banking services, account inquiries, loans, transactions, and much more. Let me know what you need help with!"
+  }
+}
