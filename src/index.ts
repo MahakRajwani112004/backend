@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { generateResponse } from "./controllers/generateController";
-import "./config/config";
+import { generateResponse } from "./response/response.controller";
+import "./config/env.config";
 
 const app = express();
 

@@ -1,4 +1,4 @@
-import { loadResponses, normalizeMessage } from "../services/contentService";
+import { loadResponses, normalizeMessage } from "../services/content.service";
 
 export const findResponse = (message: string): string | null => {
   const normalizedMessage = normalizeMessage(message);
