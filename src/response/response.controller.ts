@@ -15,20 +15,22 @@ export const generateResponse = async (
     return;
   }
 
-  const responseMessage = findResponse(message);
-  const documentContent = loadBankInfoContent();
+  try {
+    let responseMessage = findResponse(message);
 
-  if (responseMessage) {
-    res.json({ response: responseMessage });
-  } else {
-    try {
-      const result = await getOpenAIResponse(message, documentContent);
-      const audio = await generateAudioBase64(result);
-
-      res.json({ response: result, audio: `data:audio/mp3;base64,${audio}` });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to call OpenAI API" });
+    if (!responseMessage) {
+      const documentContent = loadBankInfoContent();
+      responseMessage = await getOpenAIResponse(message, documentContent);
     }
+
+    const audio = await generateAudioBase64(responseMessage);
+
+    res.json({
+      response: responseMessage,
+      audio: `data:audio/mp3;base64,${audio}`,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to generate response or audio" });
   }
 };
