@@ -1,8 +1,9 @@
 import OpenAI from "openai";
 import "../config/env.config";
+import { env } from "../config/env.config";
 export const openai = new OpenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  baseURL: process.env.API_BASE_URL,
+  apiKey: env.GEMINI_API_KEY,
+  baseURL: env.API_BASE_URL,
 });
 
 export const getOpenAIResponse = async (
