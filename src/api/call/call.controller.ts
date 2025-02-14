@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { callService } from "./call.service";
 
-
-
 export const makeCallController = async (
   req: Request,
   res: Response
