@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { loadBankInfoContent } from "../services/content.service";
-import { findResponse } from "../utils/response.util";
-import { getOpenAIResponse } from "../services/openai.service";
-import { generateAudioBase64 } from "../services/audio.service";
+import { loadBankInfoContent } from "../../services/content.service";
+import { findResponse } from "../../utils/response.util";
+import { getOpenAIResponse } from "../../services/openai.service";
+import { generateAudioBase64 } from "../../services/audio.service";
 
 export const generateResponse = async (
   req: Request,
