@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 interface Message {
-  userMessage: string;
-  botResponse: string;
+  sender: "user" | "bot";
+  text: string;
 }
 
 interface ChatDocument extends Document {
@@ -11,8 +11,8 @@ interface ChatDocument extends Document {
 }
 
 const MessageSchema = new Schema<Message>({
-  userMessage: { type: String, required: true },
-  botResponse: { type: String, required: true },
+  sender: { type: String, required: true, enum: ["user", "bot"] },
+  text: { type: String, required: true },
 });
 
 const ChatSchema = new Schema<ChatDocument>({

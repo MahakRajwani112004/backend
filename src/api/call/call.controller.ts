@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { callService } from "./call.service";
+import { CallData } from "./call.types";
 
 export const makeCallController = async (
   req: Request,
   res: Response
-): Promise< void> => {
+) => {
   const { name, phone, task } = req.body;
 
   if (!name || !phone || !task) {
@@ -13,7 +14,8 @@ export const makeCallController = async (
   }
 
   try {
-    const response = await callService.makeCall({ name, phone, task });
+    const callData: CallData = { name, phone, task };
+    const response = await callService.makeCall(callData);
     res.status(200).json(response);
   } catch (error) {
   res.status(500).json({ error: error instanceof Error ? error.message : error });
