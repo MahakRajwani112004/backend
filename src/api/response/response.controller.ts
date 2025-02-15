@@ -4,14 +4,11 @@ import { findResponse } from "../../utils/response.util";
 import { getOpenAIResponse } from "../../services/openai.service";
 import { generateAudioBase64 } from "../../services/audio.service";
 
-export const generateResponse = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const generateResponse = async (req: Request, res: Response) => {
   const { message } = req.body;
 
   if (!message) {
-    res.status(400).json({ error: "Content is required" });
+    res.status(400).json({ errorMsg: "Content is required" });
     return;
   }
 
@@ -25,12 +22,15 @@ export const generateResponse = async (
 
     const audio = await generateAudioBase64(responseMessage);
 
-    res.json({
-      response: responseMessage,
-      audio: `data:audio/mp3;base64,${audio}`,
+    res.status(200).json({
+      success: true,
+      data: {
+        response: responseMessage,
+        audio: `data:audio/mp3;base64,${audio}`,
+      },
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to generate response or audio" });
+    res.status(500).json({ errorMsg: "Failed to generate response or audio" });
   }
 };
