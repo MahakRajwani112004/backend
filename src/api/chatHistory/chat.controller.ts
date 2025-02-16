@@ -25,7 +25,7 @@ export const getChatMessages = async (req: Request, res: Response) => {
     const chat = await Chat.findOne({ chatId });
 
     if (!chat) {
-      res.status(404).json({ errorMsg: "Chat not found" });
+      res.status(404).json({ success: false, errorMsg: "Chat not found" });
       return;
     }
     res.status(200).json({
@@ -34,6 +34,6 @@ export const getChatMessages = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error("Error fetching chat messages:", error);
-    res.status(500).json({ errorMsg: "Failed to fetch chat messages" });
+    res.status(500).json({ success: false, errorMsg: "Failed to fetch chat messages" });
   }
 };
