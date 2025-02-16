@@ -10,9 +10,7 @@ export const generateResponse = async (req: Request, res: Response) => {
   const { message, chatId } = req.body;
 
   if (!message) {
-    return res
-      .status(400)
-      .json({ success: false, errorMsg: "Content is required" });
+    res.status(400).json({ success: false, errorMsg: "Content is required" });
   }
 
   try {
@@ -35,7 +33,7 @@ export const generateResponse = async (req: Request, res: Response) => {
 
     await chat.save();
     const audio = await generateAudioBase64(responseMessage);
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       data: {
         response: responseMessage,
@@ -45,7 +43,7 @@ export const generateResponse = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error("Error in generateResponse:", error);
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       errorMsg: "Failed to generate response or audio",
     });
