@@ -4,14 +4,9 @@ import mongoose from "mongoose";
 export const getAllChats = async (req: Request, res: Response) => {
   try {
     const chats = await Chat.find();
-    const formattedChats = chats.map((chat) => ({
-      chatId: chat.chatId,
-      messages: chat.messages,
-    }));
-
     res.status(200).json({
       success: true,
-      data: formattedChats,
+      data: chats,
     });
   } catch (error) {
     console.error("Error fetching chats:", error);
