@@ -5,8 +5,15 @@ export const generateAudioBase64 = async (text: string): Promise<string> => {
   if (!text) {
     throw new Error("Text is required");
   }
+
   try {
-    const urls = googleTTS.getAllAudioUrls(text, {
+    const cleanedText = text.replace(/[*`]/g, "");
+
+    if (!cleanedText.trim()) {
+      throw new Error("No valid words to translate");
+    }
+
+    const urls = googleTTS.getAllAudioUrls(cleanedText, {
       lang: "En",
       slow: false,
       host: "https://translate.google.com",
@@ -20,8 +27,8 @@ export const generateAudioBase64 = async (text: string): Promise<string> => {
         return Buffer.from(response.data, "binary").toString("base64");
       })
     );
-    const combinedAudioBase64 = audioBase64Parts.join("");
-    return combinedAudioBase64;
+
+    return audioBase64Parts.join("");
   } catch (error) {
     console.error("Error:", error);
     throw new Error("Failed to generate audio");
