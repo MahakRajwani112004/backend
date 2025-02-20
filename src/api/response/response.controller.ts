@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { loadBankInfoContent } from "../../services/content.service";
+import { loadBankInfoContent } from "../../utils/content";
 import { findResponse } from "../../utils/response.util";
 import { getOpenAIResponse } from "../../services/openai.service";
 import { generateAudioBase64 } from "../../services/audio.service";
 import { Chat } from "../chatHistory/chat.model";
 import mongoose from "mongoose";
+import { parseFile } from "../../utils/fileparser";
 
 export const generateResponse = async (req: Request, res: Response) => {
-  const { message, chatId } = req.body;
+  const { message, chatId, document } = req.body;
 
   if (!message) {
     res.status(400).json({ success: false, errorMsg: "Content is required" });
@@ -23,9 +24,17 @@ export const generateResponse = async (req: Request, res: Response) => {
     }
 
     let responseMessage = findResponse(message);
+    let documentContent = "";
 
     if (!responseMessage) {
-      const documentContent = loadBankInfoContent();
+      if (document?.documentPath && document?.mimeType) {
+        documentContent = await parseFile(
+          document.documentPath,
+          document.mimeType
+        );
+      } else {
+        documentContent = loadBankInfoContent();
+      }
       responseMessage = await getOpenAIResponse(message, documentContent);
     }
     chat.messages.push({ sender: "user", text: message });
