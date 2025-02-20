@@ -1,16 +1,15 @@
 import { Request, Response } from "express";
 import { Chat } from "./chat.model";
-import mongoose from "mongoose";
+import { errorResponse, sendSuccessResponse } from "../../utils/apiResponse";
+
 export const getAllChats = async (req: Request, res: Response) => {
   try {
     const chats = await Chat.find();
-    res.status(200).json({
-      success: true,
-      data: chats,
-    });
+
+    sendSuccessResponse({ res, data: chats });
   } catch (error) {
     console.error("Error fetching chats:", error);
-    res.status(500).json({ errorMsg: "Failed to fetch chats" });
+    errorResponse({ req, res, error: "Failed to fetch chats", statusCode: 500, });
   }
 };
 
@@ -20,15 +19,13 @@ export const getChatMessages = async (req: Request, res: Response) => {
     const chat = await Chat.findOne({ chatId });
 
     if (!chat) {
-      res.status(404).json({ success: false, errorMsg: "Chat not found" });
+      errorResponse({ req, res, error: "Chat not found", statusCode: 400 });
+
       return;
     }
-    res.status(200).json({
-      success: true,
-      data: chat.messages,
-    });
+    sendSuccessResponse({ res, data: chat.messages });
   } catch (error) {
     console.error("Error fetching chat messages:", error);
-    res.status(500).json({ success: false, errorMsg: "Failed to fetch chat messages" });
+    errorResponse({ req, res, error: "Failed to fetch chat messages", statusCode: 500, });
   }
 };

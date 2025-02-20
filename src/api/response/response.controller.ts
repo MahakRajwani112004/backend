@@ -6,12 +6,13 @@ import { generateAudioBase64 } from "../../services/audio/audio.service";
 import { Chat } from "../chatHistory/chat.model";
 import mongoose from "mongoose";
 import { parseFile } from "../../utils/fileparser";
+import { errorResponse, sendSuccessResponse, } from "../../utils/apiResponse";
 
 export const generateResponse = async (req: Request, res: Response) => {
   const { message, chatId, document } = req.body;
 
   if (!message) {
-    res.status(400).json({ success: false, errorMsg: "Content is required" });
+    errorResponse({ req, res, error: "Content is required", statusCode: 400, });
   }
 
   try {
@@ -42,19 +43,16 @@ export const generateResponse = async (req: Request, res: Response) => {
 
     await chat.save();
     const audio = await generateAudioBase64(responseMessage);
-    res.status(200).json({
-      success: true,
-      data: {
-        response: responseMessage,
+    sendSuccessResponse({
+      res, data: {
+        response: responseMessage, 
         audio: `data:audio/mp3;base64,${audio}`,
         chatId: chat.chatId,
       },
     });
   } catch (error) {
     console.error("Error in generateResponse:", error);
-    res.status(500).json({
-      success: false,
-      errorMsg: "Failed to generate response or audio",
-    });
+    errorResponse({ req, res, error: "Failed to generate response or audio", statusCode: 500, });
+
   }
 };

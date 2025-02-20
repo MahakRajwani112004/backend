@@ -1,6 +1,6 @@
 import axios from "axios";
 import { env } from "../../config/env.config";
-import { CallData, CallResponse } from "./call.types";
+import { CallData, CallResponse } from "./call.dto";
 
 const API_BASE_URL = env.app.BLAND_AI_URL;
 const API_KEY = env.app.BLAND_AI_API_KEY;
