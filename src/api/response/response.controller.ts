@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { loadBankInfoContent } from "../../utils/content";
-import { findResponse } from "../../utils/response.util";
-import { getOpenAIResponse } from "../../services/openai.service";
-import { generateAudioBase64 } from "../../services/audio.service";
+import { findResponse } from "../../utils/response";
+import { getOpenAIResponse } from "../../services/openai/openai.service";
+import { generateAudioBase64 } from "../../services/audio/audio.service";
 import { Chat } from "../chatHistory/chat.model";
 import mongoose from "mongoose";
 import { parseFile } from "../../utils/fileparser";
