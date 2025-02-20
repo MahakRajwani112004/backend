@@ -7,14 +7,16 @@ import { Chat } from "../chatHistory/chat.model";
 import mongoose from "mongoose";
 import { parseFile } from "../../utils/fileparser";
 import { errorResponse, sendSuccessResponse, } from "../../utils/apiResponse";
+import { GenerateResponseData, GenerateResponseSchema } from "./response.dto";
 
 export const generateResponse = async (req: Request, res: Response) => {
-  const { message, chatId, document } = req.body;
 
-  if (!message) {
-    errorResponse({ req, res, error: "Content is required", statusCode: 400, });
+  const validationResult = GenerateResponseSchema.safeParse(req.body);
+  if (!validationResult.success) {
+    return errorResponse({ req, res, error: "Missing fields", statusCode: 400, });
   }
 
+  const { message, chatId, document }: GenerateResponseData = validationResult.data;
   try {
     let chat = await Chat.findOne({ chatId });
     if (!chat) {
